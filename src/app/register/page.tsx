@@ -69,7 +69,7 @@ const Page = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">
-                    Email
+                    Password
                   </Label>
                   <div className="relative">
                     <Input type={showPassword ? 'text' : 'password'} id='password' value={password} onChange={e => setPassword(e.target.value)} required />
