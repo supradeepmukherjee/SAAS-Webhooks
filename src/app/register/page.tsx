@@ -32,21 +32,21 @@ const Page = () => {
       console.log(err)
       setError(err.errors[0].message)
     }
-    const verifyHandler = async (e: FormEvent) => {
-      e.preventDefault()
-      if (!isLoaded) return
-      try {
-        const { status, createdSessionId } = await signUp.attemptEmailAddressVerification({ code })
-        if (status !== 'complete') {
-          // 
-          return
-        }
-        await setActive({ session: createdSessionId })
-        router.push('/dashboard')
-      } catch (err: any) {
-        console.log(err)
-        setError(err.errors[0].message)
+  }
+  const verifyHandler = async (e: FormEvent) => {
+    e.preventDefault()
+    if (!isLoaded) return
+    try {
+      const { status, createdSessionId } = await signUp.attemptEmailAddressVerification({ code })
+      if (status !== 'complete') {
+        // 
+        return
       }
+      await setActive({ session: createdSessionId })
+      router.push('/dashboard')
+    } catch (err: any) {
+      console.log(err)
+      setError(err.errors[0].message)
     }
   }
   return (
@@ -94,7 +94,7 @@ const Page = () => {
                 </Button>
               </form>
             ) : (
-              <form className="space-y-4" onSubmit={submitHandler}>
+              <form className="space-y-4" onSubmit={verifyHandler}>
                 <div className="space-y-2">
                   <Label htmlFor='code'>
                     Verification Code
