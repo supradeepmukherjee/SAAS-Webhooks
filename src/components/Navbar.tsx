@@ -1,3 +1,5 @@
+'use client'
+
 import { useClerk, useUser } from "@clerk/nextjs"
 import { CreditCard, LogOut } from "lucide-react"
 import Link from "next/link"
