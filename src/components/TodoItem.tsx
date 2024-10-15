@@ -11,7 +11,7 @@ const TodoItem = (
     :
     {
       todo: Todo
-      isAdmin: boolean
+      isAdmin?: boolean
       handleUpdate: (id: string, completed: boolean) => void
       handleDelete: (id: string) => void
     }
