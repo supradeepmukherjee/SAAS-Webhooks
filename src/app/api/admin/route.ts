@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     } catch (err) {
         console.log(err)
         return NextResponse.json(
-            { error: 'Failed to get TODOs of User' },
+            { error: 'Failed to get User Details' },
             { status: 500 }
         )
     }
@@ -64,20 +64,6 @@ export async function PUT(req: NextRequest) {
         return NextResponse.json({ msg: 'Updated successfully' }, { status: 200 })
     } catch (err) {
         console.log(err)
-        return NextResponse.json({ msg: 'Failed to update' }, { status: 200 })
-    }
-}
-
-export async function DELETE(req: NextRequest) {
-    const { userId } = auth()
-    if (!userId || !(await isAdmin(userId))) return NextResponse.json({ error: 'Unauthorised' }, { status: 401 })
-    try {
-        const { id } = await req.json()
-        if (!id) return NextResponse.json({ error: 'TODO ID is required' }, { status: 400 })
-        await prisma.todo.delete({ where: { id } })
-        return NextResponse.json({ msg: 'Deleted successfully' }, { status: 200 })
-    } catch (err) {
-        console.log(err)
-        return NextResponse.json({ msg: 'Failed to delete' }, { status: 200 })
+        return NextResponse.json({ msg: 'Failed to update' }, { status: 500 })
     }
 }
